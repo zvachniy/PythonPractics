@@ -1,15 +1,13 @@
-matrix = [
-    [1, -2, -3, 4],
-    [5, 6, -7, 8],
-    [9, 10, -11, 12],
-    [13, 14, -15, 16]
+my_matrix = [
+    [1, -2, -3, 4, 0],
+    [0, 6, -7, -8, 0],
+    [0, 11, 0, -13, 14],
+    [0, 0, -17, 18, -19]
 ]
-my_dictionary_i = {}
-
-my_tuples = 0
+my_dictionary_j = {}
 
 
-def printMatrix(matrix):
+def print_matrix(matrix):
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             print("{:4d}".format(matrix[i][j]), end="")
@@ -17,48 +15,34 @@ def printMatrix(matrix):
     print("\n")
 
 
-printMatrix(matrix)
-
-counter: int = 0
-
-del_column = 0
-k = 0
-
-my_dictionary_j = {}
-
-
 def delete_not_positive_column(matrix):
     counter_set_j = 0
-    rows = len(matrix)
-    for j in range(rows):
-        if matrix[j] <= 0:
-            counter_set_j += 1
-            my_dictionary_j[j] = counter_set_j
+    for rows in range(len(matrix)):
+        for j in range(len(matrix)):
+            if matrix[rows][j] <= 0:
+                counter_set_j += 1
+                my_dictionary_j[j] = counter_set_j
     delete_column_j(matrix, find_max_dict_value(my_dictionary_j))
 
 
 def find_max_dict_value(dict):
     max = 0
-    for val in dict.values():
+    max_key = 0
+    for key, val in dict.items():
         if max <= val:
             max = val
-    return max
+            max_key = key
+    return max_key
 
 
-shadow_list = []
-
-
-def delete_column_j(matrix, j):  # удаляем столбец
+def delete_column_j(matrix, deleting_column):  # удаляем столбец
     rows = len(matrix)
     for i in range(rows):
-        _ = matrix[i].pop(2)
+        deleted = matrix[i].pop(deleting_column)
 
 
-delete_column_j(matrix)
-printMatrix(matrix)
-# delete_not_positive_column(matrix)
-# printMatrix(shadow_list)
-# for row in matrix:
-#     for x in row:
-#         print("{:4d}".format(x), end="")
-#     print()
+print_matrix(my_matrix)
+delete_not_positive_column(my_matrix)
+print_matrix(my_matrix)
+
+
