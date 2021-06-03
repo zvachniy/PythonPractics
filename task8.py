@@ -5,7 +5,7 @@ matrix = [
     [13, 14, -15, 16]
 ]
 my_dictionary_i = {}
-my_dictionary_j = {}
+
 my_tuples = 0
 
 
@@ -14,6 +14,7 @@ def printMatrix(matrix):
         for j in range(len(matrix[i])):
             print("{:4d}".format(matrix[i][j]), end="")
         print()
+    print("\n")
 
 
 printMatrix(matrix)
@@ -23,27 +24,41 @@ counter: int = 0
 del_column = 0
 k = 0
 
+my_dictionary_j = {}
+
 
 def delete_not_positive_column(matrix):
-    counter_i: int = 0
-    counter_j: int = 0
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            if matrix[i][j] <= 0:
-                counter_j = j
+    counter_set_j = 0
+    rows = len(matrix)
+    for j in range(rows):
+        if matrix[j] <= 0:
+            counter_set_j += 1
+            my_dictionary_j[j] = counter_set_j
+    delete_column_j(matrix, find_max_dict_value(my_dictionary_j))
 
 
+def find_max_dict_value(dict):
+    max = 0
+    for val in dict.values():
+        if max <= val:
+            max = val
+    return max
 
-    return print(counter_i, counter_j)
+
+shadow_list = []
 
 
+def delete_column_j(matrix, j):  # удаляем столбец
+    rows = len(matrix)
+    for i in range(rows):
+        _ = matrix[i].pop(2)
 
 
-delete_not_positive_column(matrix)
-
+delete_column_j(matrix)
+printMatrix(matrix)
+# delete_not_positive_column(matrix)
+# printMatrix(shadow_list)
 # for row in matrix:
 #     for x in row:
 #         print("{:4d}".format(x), end="")
 #     print()
-
-
