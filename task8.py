@@ -1,8 +1,8 @@
 my_matrix = [
-    [1, -2, -3, 4, 0],
-    [0, 6, -7, -8, 0],
-    [0, 11, 0, -13, 14],
-    [0, 0, -17, 18, -19]
+    [1, -2, -3, 0, 1],
+    [0, 5, -6, 1, -1],
+    [0, 8, 0, 0, 1],
+    [0, 0, -12, 1, -1]
 ]
 my_dictionary_j = {}
 
@@ -15,13 +15,19 @@ def print_matrix(matrix):
     print("\n")
 
 
+def set_j_index_dict(dictionary, matrix):
+  for Rows in range(len(matrix)):
+        for j in range(len(matrix[Rows])):
+            dictionary[j] = 0  
+
+
 def delete_not_positive_column(matrix):
-    counter_set_j = 0
-    for rows in range(len(matrix)):
-        for j in range(len(matrix)):
-            if matrix[rows][j] <= 0:
-                counter_set_j += 1
-                my_dictionary_j[j] = counter_set_j
+    CounterJ = 0
+    j = 0
+    for Rows in range(len(matrix)):
+        for j in range(len(matrix[Rows])):
+            if matrix[Rows][j] < 0 or matrix[Rows][j] == 0:
+                my_dictionary_j[j] += 1
     delete_column_j(matrix, find_max_dict_value(my_dictionary_j))
 
 
@@ -35,14 +41,13 @@ def find_max_dict_value(dict):
     return max_key
 
 
-def delete_column_j(matrix, deleting_column):  # удаляем столбец
-    rows = len(matrix)
-    for i in range(rows):
-        deleted = matrix[i].pop(deleting_column)
+def delete_column_j(matrix, DeletingColumn):  # удаляем столбец
+    Rows = len(matrix)
+    for i in range(Rows):
+        DeletedColumn = matrix[i].pop(DeletingColumn)
 
-
+set_j_index_dict(my_dictionary_j,my_matrix)
 print_matrix(my_matrix)
 delete_not_positive_column(my_matrix)
 print_matrix(my_matrix)
-
 
