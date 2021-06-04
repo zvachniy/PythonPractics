@@ -1,17 +1,7 @@
 input_string = input()
 InputNumber = int(input_string)
-# int_to_string_dict={
-#     'один':
-#     'два'
-#     'три'
-#     'четыре'
-#     'пять'
-#     'шесть'
-#     'семь'
-#     'восемь'
-#     'девять'
-#     'десять'
-# }
+
+
 def number_to_words(number):
     chifry = {
         1: "один",
